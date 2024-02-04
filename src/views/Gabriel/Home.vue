@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div class="left-content">
-      <h1 class="title">Me leve para casa</h1>
+      <h1 class="title">ME LEVE PARA CASA</h1>
       <p class="text">
         Nós cuidamos deles. <span class="highlighted"> Agora deixe que eles cuidem de você.</span>
       </p>
@@ -28,8 +28,14 @@
 </template>
 <style scoped>
 .title {
-  font-size: 32px;
+  font-size: 28px;
   color: coral;
+}
+.content {
+  display: flex;
+  width: 70%;
+  margin: 0 auto;
+  align-items: center;
 }
 
 .text {
@@ -39,13 +45,6 @@
 
 .highlighted {
   font-weight: bold;
-}
-
-.content {
-  display: flex;
-  width: 70%;
-  margin: 0 auto;
-  align-items: center;
 }
 
 .content-image {
