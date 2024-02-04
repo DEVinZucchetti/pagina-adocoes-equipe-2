@@ -14,6 +14,9 @@
         e carinho que faz bem pra todo mundo. Leve um para casa: cuide dele e deixe que ele cuide de
         você também.
       </p>
+      <router-link to="pets-adocao">
+        <button class="action">Adotar agora!</button>
+      </router-link>
     </div>
     <div class="right-content">
       <img
@@ -53,5 +56,13 @@
   .content {
     flex-direction: column;
   }
+}
+
+.action {
+  width: 100px;
+  height: 30px;
+  color: white;
+  background-color: coral;
+  border-radius: 10px;
 }
 </style>
