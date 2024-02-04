@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="adocao-home">
-      <h1>Adote pet 1 </h1>
+      <h1>Adote pet 1</h1>
       <button @click="entrar1">Ver Animais</button>
       <p>Criado por: Henrique</p>
     </div>
     <hr />
 
     <div class="adocao-home">
-      <h1>Adote pet 2 </h1>
+      <h1>Adote pet 2</h1>
       <button @click="entrar2">Ver Animais</button>
       <p>Criado por: Henrique 2</p>
     </div>
@@ -16,11 +16,11 @@
     <div class="adocao-home">
       <h1>Adote pet 3</h1>
       <button @click="entrar3">Ver Animais</button>
-      <p>Criado por: Henrique 3</p>
+      <p>Criado por: Gabriel Valadão</p>
     </div>
     <hr />
     <div class="adocao-home">
-      <h1>Adote pet 4 </h1>
+      <h1>Adote pet 4</h1>
       <button @click="entrar4">Ver Animais 4</button>
       <p>Criado por: Henrique4</p>
     </div>
