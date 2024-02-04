@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Main from '../views/Main.vue'
 import Home1 from '../views/pessoa1/Home.vue'
 import Home2 from '../views/pessoa2/Home.vue'
-import Home3 from '../views/pessoa3/Home.vue'
+import Home3 from '../views/Gabriel/Home.vue'
 import Home4 from '../views/pessoa4/Home.vue'
 
 const router = createRouter({
@@ -33,8 +33,7 @@ const router = createRouter({
       path: '/home4',
       name: 'home4',
       component: Home4
-    },
-   
+    }
   ]
 })
 
