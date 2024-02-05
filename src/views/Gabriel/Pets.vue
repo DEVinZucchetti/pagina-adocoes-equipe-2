@@ -1,44 +1,22 @@
 <template>
-  <div class="pet-list">
-    <div class="pet-item">
-      <img
-        src="https://img.freepik.com/fotos-gratis/adoravel-cachorro-basenji-marrom-e-branco-sorrindo-e-dando-mais-uns-cinco-isolado-no-branco_346278-1657.jpg"
-        alt="Doguinho joão"
-      />
-      <span>Doguinho joão</span>
-    </div>
-    <div class="pet-item">
-      <img
-        src="https://img.freepik.com/fotos-gratis/adoravel-cachorro-basenji-marrom-e-branco-sorrindo-e-dando-mais-uns-cinco-isolado-no-branco_346278-1657.jpg"
-        alt="Doguinho joão"
-      />
-      <span>Doguinho joão</span>
-    </div>
-    <div class="pet-item">
-      <img
-        src="https://img.freepik.com/fotos-gratis/adoravel-cachorro-basenji-marrom-e-branco-sorrindo-e-dando-mais-uns-cinco-isolado-no-branco_346278-1657.jpg"
-        alt="Doguinho joão"
-      />
-      <span>Doguinho joão</span>
-    </div>
-    <div class="pet-item">
-      <img
-        src="https://img.freepik.com/fotos-gratis/adoravel-cachorro-basenji-marrom-e-branco-sorrindo-e-dando-mais-uns-cinco-isolado-no-branco_346278-1657.jpg"
-        alt="Doguinho joão"
-      />
-      <span>Doguinho joão</span>
-    </div>
-    <div class="pet-item">
-      <img
-        src="https://img.freepik.com/fotos-gratis/adoravel-cachorro-basenji-marrom-e-branco-sorrindo-e-dando-mais-uns-cinco-isolado-no-branco_346278-1657.jpg"
-        alt="Doguinho joão"
-      />
-      <span>Doguinho joão</span>
+  <div class="container">
+    <div class="pet-list">
+      <div class="pet-item">
+        <img
+          src="https://img.freepik.com/fotos-gratis/adoravel-cachorro-basenji-marrom-e-branco-sorrindo-e-dando-mais-uns-cinco-isolado-no-branco_346278-1657.jpg"
+          alt="Doguinho joão"
+        />
+        <span>Doguinho joão</span>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.container {
+  width: 70%;
+  margin: 0 auto;
+}
 .pet-list {
   display: flex;
 }
