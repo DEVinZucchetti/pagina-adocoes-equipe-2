@@ -23,11 +23,11 @@ export default {
   },
   mounted() {
     axios
-      .get('http://localhost:8000/api/pets/adocao')
+      .get('http://localhost:8000/api/pets/adoption')
       .then((response) => {
         this.pets = response.data
       })
-      .catch(() => alert('Houve um erro ao retornar os pets'))
+      .catch(() => alert('Houve um erro'))
   }
 }
 </script>
@@ -41,18 +41,23 @@ export default {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
+  gap: 10px;
 }
 
 .pet-item {
   border: 1px solid coral;
   padding: 5px;
-  width: 300px;
+  width: 30%;
   height: 200px;
   border-radius: 4px;
   flex-direction: column;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.pet-item:hover {
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.7);
 }
 
 .pet-item img {
