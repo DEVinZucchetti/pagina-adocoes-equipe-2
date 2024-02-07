@@ -1,7 +1,8 @@
 <template>
   <div class="container">
+    <h1>Adote um amigo!</h1>
     <div class="pet-list">
-      <div class="pet-item" v-for="pet in pets" @click="redirectToProfile">
+      <div class="pet-item" v-for="pet in pets" @click="redirectToProfile(pet.id)">
         <img
           src="https://img.freepik.com/fotos-gratis/adoravel-cachorro-basenji-marrom-e-branco-sorrindo-e-dando-mais-uns-cinco-isolado-no-branco_346278-1657.jpg"
           alt="Doguinho joão"
@@ -23,8 +24,8 @@ export default {
   },
 
   methods: {
-    redirectToProfile() {
-      this.$router.push('/pets-adocao-3/perfil')
+    redirectToProfile(petId) {
+      this.$router.push(`/pets-adocao/${petId}perfil`)
     }
   },
   mounted() {
