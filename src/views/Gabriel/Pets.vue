@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="pet-list">
-      <div class="pet-item" v-for="pet in pets">
+      <div class="pet-item" v-for="pet in pets" @click="redirectToProfile">
         <img
           src="https://img.freepik.com/fotos-gratis/adoravel-cachorro-basenji-marrom-e-branco-sorrindo-e-dando-mais-uns-cinco-isolado-no-branco_346278-1657.jpg"
           alt="Doguinho joão"
@@ -21,9 +21,15 @@ export default {
       pets: []
     }
   },
+
+  methods: {
+    redirectToProfile() {
+      this.$router.push('/pets-adocao-3/perfil')
+    }
+  },
   mounted() {
     axios
-      .get('http://localhost:8000/api/pets/adoption')
+      .get('http://localhost:8000/api/pets/adocao')
       .then((response) => {
         this.pets = response.data
       })
