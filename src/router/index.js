@@ -43,7 +43,7 @@ const router = createRouter({
     },
     {
       path: '/pets-adocao/:id/perfil',
-      name: 'Petsprofile',
+      name: 'Profile',
       component: PetsProfile
     }
   ]
