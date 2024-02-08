@@ -8,7 +8,7 @@
       <li>Peso: {{ pet.weight }} Kg</li>
       <li>Porte: {{ pet.size }}</li>
     </ul>
-    <form class="form">
+    <form class="form" @submit.prevent="handleSubmit">
       <p>Adote seu amigo {{ pet.name }}</p>
       <div>
         <label for="name">Nome</label>
@@ -29,6 +29,7 @@
           <textarea name="observations" cols="50" rows="10" v-model="observations"></textarea>
         </div>
       </div>
+      <button class="button-style" type="submit">Adotar</button>
     </form>
   </div>
 </template>
@@ -43,6 +44,23 @@ export default {
       contact: '',
       email: '',
       observations: ''
+    }
+  },
+  methods: {
+    handleSubmit() {
+      axios
+        .post('http://127.0.0.1:8000/api/adocoes', {
+          name: this.name,
+          contact: this.contact,
+          email: this.email,
+          observations: this.observations
+        })
+        .then(() => {
+          alert('Adoção cadastrada com sucesso')
+        })
+        .catch(() => {
+          alert('Houve um erro ao fazer adoção')
+        })
     }
   },
   mounted() {
@@ -63,5 +81,9 @@ export default {
 .form input {
   width: 40%;
   height: 40%;
+}
+
+.button-style {
+  width: 20%;
 }
 </style>
