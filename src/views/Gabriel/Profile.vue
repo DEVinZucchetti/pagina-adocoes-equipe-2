@@ -8,6 +8,28 @@
       <li>Peso: {{ pet.weight }} Kg</li>
       <li>Porte: {{ pet.size }}</li>
     </ul>
+    <form class="form">
+      <p>Adote seu amigo {{ pet.name }}</p>
+      <div>
+        <label for="name">Nome</label>
+        <input v-model="name" />
+      </div>
+      <div>
+        <label for="contact">Contato</label>
+        <input v-model="contact" />
+      </div>
+      <div>
+        <label for="email">E-mail</label>
+        <input v-model="email" type="email" />
+      </div>
+
+      <div>
+        <label for="observations">Nos conte o motivo de querer adotar esse pet:</label>
+        <div>
+          <textarea name="observations" cols="50" rows="10" v-model="observations"></textarea>
+        </div>
+      </div>
+    </form>
   </div>
 </template>
 
@@ -16,7 +38,11 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      pet: null
+      pet: null,
+      name: '',
+      contact: '',
+      email: '',
+      observations: ''
     }
   },
   mounted() {
@@ -27,3 +53,15 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form input {
+  width: 40%;
+  height: 40%;
+}
+</style>
