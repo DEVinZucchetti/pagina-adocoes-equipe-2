@@ -25,7 +25,7 @@ export default {
 
   methods: {
     redirectToProfile(petId) {
-      this.$router.push(`/pets-adocao/${petId}perfil`)
+      this.$router.push(`/pets-adocao/${petId}/perfil`)
     }
   },
   mounted() {
