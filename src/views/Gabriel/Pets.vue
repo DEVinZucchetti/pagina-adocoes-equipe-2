@@ -1,8 +1,26 @@
 <template>
   <div class="container">
     <h1>Adote um amigo!</h1>
+
+    <!-- Campos de filtro -->
+    <div>
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" v-model="filtros.nome" />
+    </div>
+
+    <div>
+      <label for="idade">Idade:</label>
+      <input type="number" id="idade" v-model.number="filtros.idade" />
+    </div>
+
+    <!-- Lista de Pets filtrada -->
     <div class="pet-list">
-      <div class="pet-item" v-for="pet in pets" @click="redirectToProfile(pet.id)">
+      <div
+        class="pet-item"
+        v-for="pet in petsFiltrados"
+        :key="pet.id"
+        @click="redirectToProfile(pet.id)"
+      >
         <img
           src="https://img.freepik.com/fotos-gratis/adoravel-cachorro-basenji-marrom-e-branco-sorrindo-e-dando-mais-uns-cinco-isolado-no-branco_346278-1657.jpg"
           alt="Doguinho joão"
@@ -19,7 +37,11 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      pets: []
+      pets: [],
+      filtros: {
+        nome: '',
+        idade: null
+      }
     }
   },
 
@@ -28,6 +50,26 @@ export default {
       this.$router.push(`/pets-adocao/${petId}/perfil`)
     }
   },
+
+  computed: {
+    petsFiltrados() {
+      return this.pets.filter((pet) => {
+        let passFilter = true
+        if (
+          this.filtros.nome &&
+          pet.pet_name.toLowerCase().indexOf(this.filtros.nome.toLowerCase()) === -1
+        ) {
+          passFilter = false
+        }
+        if (this.filtros.idade !== null && pet.idade !== this.filtros.idade) {
+          passFilter = false
+        }
+
+        return passFilter
+      })
+    }
+  },
+
   mounted() {
     axios
       .get('http://localhost:8000/api/pets/adocao')
@@ -40,6 +82,11 @@ export default {
 </script>
 
 <style scoped>
+.filters input {
+  width: 50%;
+  display: flex;
+  gap: 10px;
+}
 .container {
   width: 70%;
   margin: 0 auto;
