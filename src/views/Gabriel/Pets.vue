@@ -2,18 +2,18 @@
   <div class="container">
     <h1>Adote um amigo!</h1>
 
-    <!-- Campos de filtro -->
-    <div>
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" v-model="filtros.nome" />
-    </div>
+    <form @submit.prevent="handleSearch">
+      <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" v-model="filtros.nome" />
+      </div>
 
-    <div>
-      <label for="idade">Idade:</label>
-      <input type="number" id="idade" v-model.number="filtros.idade" />
-    </div>
+      <div class="form-group">
+        <label for="idade">Idade:</label>
+        <input type="number" id="idade" v-model.number="filtros.idade" />
+      </div>
+    </form>
 
-    <!-- Lista de Pets filtrada -->
     <div class="pet-list">
       <div
         class="pet-item"
@@ -25,7 +25,7 @@
           src="https://img.freepik.com/fotos-gratis/adoravel-cachorro-basenji-marrom-e-branco-sorrindo-e-dando-mais-uns-cinco-isolado-no-branco_346278-1657.jpg"
           alt="Doguinho joão"
         />
-        <span>{{ pet.pet_name }}</span>
+        <h2>{{ pet.pet_name }}</h2>
       </div>
     </div>
   </div>
@@ -48,6 +48,15 @@ export default {
   methods: {
     redirectToProfile(petId) {
       this.$router.push(`/pets-adocao/${petId}/perfil`)
+    },
+
+    handleSearch() {
+      axios
+        .get('http://localhost:8000/api/pets/adocao')
+        .then((response) => {
+          this.pets = response.data
+        })
+        .catch(() => alert('Houve um erro'))
     }
   },
 
@@ -82,6 +91,20 @@ export default {
 </script>
 
 <style scoped>
+.form-group {
+  margin-bottom: 10px;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+label {
+  flex-basis: 100px;
+}
+
 .filters input {
   width: 50%;
   display: flex;

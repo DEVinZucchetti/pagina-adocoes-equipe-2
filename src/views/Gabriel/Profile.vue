@@ -1,33 +1,38 @@
 <template>
-  <div v-if="pet">
-    <h1>Amigo: {{ pet.name }}</h1>
+  <div class="pet-info" v-if="pet">
     <ul>
+      <div class="pet-image">
+        <img
+          src="https://img.freepik.com/fotos-gratis/adoravel-cachorro-basenji-marrom-e-branco-sorrindo-e-dando-mais-uns-cinco-isolado-no-branco_346278-1657.jpg"
+          alt="Doguinho joão"
+        />
+      </div>
       <li>Raça: {{ pet.race.name }}</li>
       <li>Espécie: {{ pet.specie.name }}</li>
       <li>Idade: {{ pet.age }} Ano(s)</li>
       <li>Peso: {{ pet.weight }} Kg</li>
       <li>Porte: {{ pet.size }}</li>
     </ul>
+  </div>
+  <div>
     <form class="form" @submit.prevent="handleSubmit">
-      <p>Adote seu amigo {{ pet.name }}</p>
-      <div>
+      <p>Adote seu amigo:</p>
+      <div class="input-group">
         <label for="name">Nome</label>
         <input v-model="name" />
       </div>
-      <div>
+      <div class="input-group">
         <label for="contact">Contato</label>
         <input v-model="contact" />
       </div>
-      <div>
+      <div class="input-group">
         <label for="email">E-mail</label>
         <input v-model="email" type="email" />
       </div>
 
-      <div>
-        <label for="observations">Nos conte o motivo de querer adotar esse pet:</label>
-        <div>
-          <textarea name="observations" cols="50" rows="10" v-model="observations"></textarea>
-        </div>
+      <label for="observations">Nos conte o motivo de querer adotar esse pet:</label>
+      <div class="input-group">
+        <textarea name="observations" cols="50" rows="10" v-model="observations"></textarea>
       </div>
       <button class="button-style" type="submit">Adotar</button>
     </form>
@@ -73,18 +78,40 @@ export default {
 </script>
 
 <style scoped>
+.pet-info {
+  display: flex;
+  align-items: center;
+}
+
+.pet-image img {
+  max-width: 50%;
+}
+
 .form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  width: 30%;
 }
 
-.form input {
-  width: 40%;
-  height: 40%;
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+label {
+  flex: 1;
+  margin-right: 10px;
+  text-align: right;
+}
+
+input,
+textarea {
+  flex: 3;
 }
 
 .button-style {
+  align-self: flex-start;
   width: 20%;
 }
 </style>
