@@ -12,7 +12,7 @@
           </v-btn>
         </router-link>
 
-        <router-link to="pets2">
+        <router-link to="pets-adocao-2">
           <v-btn
             class="text-white font-weight-bold"
             prepend-icon="mdi-cat"
