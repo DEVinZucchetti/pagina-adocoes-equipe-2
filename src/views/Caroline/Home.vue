@@ -27,11 +27,11 @@
 
     <div class="mt-16 pt-16 container">
       <v-row class="d-flex align-center justify-center">
-        <v-col cols="6">
+        <v-col cols="12" md="6">
           <v-icon class="text-amber-accent-4" style="font-size: 50px">mdi-paw-outline</v-icon>
           <h1 class="my-5 text-amber-accent-4">Me leva para casa</h1>
 
-          <div class="block-text">
+          <div class="block-text" :style="smAndDown ? 'width:100%' : 'width:80%'">
             <p class="my-4 text-h6 text-dark-grey">
               Nós cuidamos deles. <b>Agora deixe que eles cuidem de você.</b>
             </p>
@@ -48,7 +48,7 @@
 
           <router-link to="pets-adocao-2">
             <v-btn
-              variant="elevated"
+              variant="flat"
               color="amber-accent-4 text-white"
               class="font-weight-bold px-10 my-8 text-body-1"
               size="large"
@@ -56,7 +56,7 @@
             </v-btn>
           </router-link>
         </v-col>
-        <v-col cols="6">
+        <v-col cols="12" md="6">
           <v-img
             class="image"
             src="https://vale.com/documents/d/guest/imagem-dogs01"
@@ -67,6 +67,11 @@
     </div>
   </v-app>
 </template>
+
+<script setup>
+import { useDisplay } from 'vuetify'
+const { xs, smAndDown, mdAndDown } = useDisplay()
+</script>
 
 <style scoped>
 .container {
@@ -81,7 +86,6 @@
 }
 
 .block-text {
-  width: 85%;
   text-align: justify;
 }
 </style>
