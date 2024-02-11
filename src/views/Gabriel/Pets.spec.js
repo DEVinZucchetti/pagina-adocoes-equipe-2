@@ -8,4 +8,6 @@ describe('Tela de listagem de Pets', () => {
 
     expect(component).toBeTruthy()
   })
+
+  it('Espera-se que liste um card para cada pet', () => {})
 })
