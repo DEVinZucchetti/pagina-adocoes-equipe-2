@@ -10,7 +10,7 @@
     <div class="adocao-home">
       <h1>Adote pet 2</h1>
       <button @click="entrar2">Ver Animais</button>
-      <p>Criado por: Henrique 2</p>
+      <p>Criado por: Caroline Sampaio</p>
     </div>
     <hr />
     <div class="adocao-home">
