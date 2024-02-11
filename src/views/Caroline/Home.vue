@@ -70,12 +70,12 @@
 
 <script setup>
 import { useDisplay } from 'vuetify'
-const { xs, smAndDown, mdAndDown } = useDisplay()
+const { smAndDown } = useDisplay()
 </script>
 
 <style>
 html {
-  overflow-y: auto;
+  overflow-y: auto !important;
 }
 </style>
 
