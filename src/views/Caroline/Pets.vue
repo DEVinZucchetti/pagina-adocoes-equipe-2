@@ -27,8 +27,21 @@
 
     <div class="mt-16 pt-16 container">
       <h1 class="my-5 text-amber-accent-4">Encontre seu melhor amigo</h1>
+
+      <v-form class="d-flex align-center justify-center">
+        <v-text-field
+          v-model="search"
+          label="Pesquisar"
+          prepend-inner-icon="mdi-magnify"
+          class="mx-2"
+          outlined
+          dense
+          @input="searchPets"
+        ></v-text-field>
+      </v-form>
+
       <v-row>
-        <v-col cols="6" md="3" v-for="pet in pets" :key="pet.id" class="pa-5">
+        <v-col cols="6" md="3" v-for="pet in FilteredPets" :key="pet.id" class="pa-5">
           <v-card @click="redirectToProfile(pet.id)" class="PetsCards" variant="flat">
             <v-img :src="imagens[pet.id % imagens.length]" height="400px" cover></v-img>
             <v-card-title class="text-h5 text-amber-accent-4 font-weight-bold">{{
@@ -49,6 +62,8 @@ export default {
   data() {
     return {
       pets: [],
+      search: '',
+      FilteredPets: [],
       imagens: [
         'https://i.pinimg.com/564x/94/af/b4/94afb47cacb76da8586a729a82c39dc2.jpg',
         'https://i.pinimg.com/564x/96/ca/98/96ca9814aecaa525461b638a3e447093.jpg',
@@ -64,13 +79,25 @@ export default {
   methods: {
     redirectToProfile(petId) {
       this.$router.push(`/pets-adocao-2/${petId}/perfil`)
+    },
+    searchPets() {
+      axios
+        .get('http://localhost:8000/api/pets/adocao', {
+          params: {
+            search: this.search
+          }
+        })
+        .then((response) => {
+          this.FilteredPets = response.data
+        })
+        .catch(() => alert('Houve um erro. Entre em contato com a ONG'))
     }
   },
   mounted() {
     axios
       .get('http://localhost:8000/api/pets/adocao')
       .then((response) => {
-        this.pets = response.data
+        this.pets = this.FilteredPets = response.data
       })
       .catch(() => alert('Houve um erro. Entre em contato com a ONG'))
   }
