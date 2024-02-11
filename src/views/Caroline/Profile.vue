@@ -63,39 +63,47 @@
               <b>Estamos localizados na Grande São Paulo</b>
             </p>
 
-            <v-form class="px-5 py-8">
+            <v-form @submit.prevent="handleAdoption" class="px-5 py-8">
               <v-text-field
                 v-model="name"
                 label="Nome completo"
                 type="text"
+                :error-messages="errors.name"
                 variant="outlined"
+                class="pb-2"
               ></v-text-field>
 
               <v-text-field
                 v-model="email"
                 label="E-mail"
                 type="email"
+                :error-messages="errors.email"
                 variant="outlined"
+                class="pb-2"
               ></v-text-field>
 
               <v-text-field
                 v-model="phone"
                 label="Telefone"
                 type="text"
+                :error-messages="errors.phone"
                 variant="outlined"
+                class="pb-2"
               ></v-text-field>
 
               <v-textarea
                 v-model="about"
                 label="Conte-nos um pouco sobre você, sua casa e a rotina da sua família"
                 type="text"
+                :error-messages="errors.about"
                 variant="outlined"
+                class="pb-2"
               ></v-textarea>
 
               <v-btn
                 type="submit"
                 color="amber-accent-4 text-white"
-                class="font-weight-bold mt-5"
+                class="font-weight-bold"
                 size="large"
                 variant="flat"
               >
@@ -107,10 +115,16 @@
       </v-row>
     </div>
   </v-app>
+
+  <v-snackbar v-model="message" timeout="3000" color="success" location="top">
+    Formulário enviado com sucesso!
+  </v-snackbar>
 </template>
 
 <script>
 import axios from 'axios'
+import * as yup from 'yup'
+import { captureErrorYup } from '../../utils/captureErrorYup'
 
 export default {
   data() {
@@ -120,7 +134,8 @@ export default {
       email: '',
       phone: '',
       about: '',
-      erros: [],
+      errors: {},
+      message: false,
 
       imagens: [
         'https://i.pinimg.com/564x/94/af/b4/94afb47cacb76da8586a729a82c39dc2.jpg',
@@ -153,14 +168,54 @@ export default {
           return name
         }
       }
+    },
+    handleAdoption() {
+      const schema = yup.object().shape({
+        name: yup
+          .string()
+          .min(6, 'Seu nome completo deve possuir no mínimo 6 caracteres')
+          .required('Digite seu nome completo.'),
+        email: yup
+          .string()
+          .email('Forneça um endereço de email válido')
+          .required('E-mail é obrigatório.'),
+        phone: yup.string().required('Um telefone para contato é obrigatório.'),
+        about: yup
+          .string()
+          .min(20, 'Conte-nos um pouco mais sobre você e sua família')
+          .required('É obrigatório nos contar um pouco sobre você e sua família')
+      })
+      try {
+        schema.validateSync(
+          {
+            name: this.name,
+            email: this.email,
+            phone: this.phone,
+            about: this.about
+          },
+          { abortEarly: false }
+        )
+
+        this.errors = {}
+
+        //implementar post em nova tabela do banco de dados no backend
+        this.name = ''
+        this.email = ''
+        this.phone = ''
+        this.about = ''
+        this.message = true
+      } catch (error) {
+        if (error instanceof yup.ValidationError) {
+          console.log(error)
+          this.errors = captureErrorYup(error)
+        }
+      }
     }
   },
   mounted() {
     const id = this.$route.params.id
-    console.log(id)
     axios.get(`http://127.0.0.1:8000/api/pets/${id}`).then((response) => {
       this.pet = response.data
-      console.log(response.data)
     })
   }
 }
