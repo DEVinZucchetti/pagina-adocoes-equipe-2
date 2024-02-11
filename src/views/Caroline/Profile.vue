@@ -1,3 +1,3 @@
 <template>
-  <span>  código pessoa 1</span>
+  <span>Pagina do perfil do pet</span>
 </template>
