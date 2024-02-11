@@ -26,9 +26,9 @@
     </v-app-bar>
 
     <div v-if="pet" class="my-auto" width="80%">
-      <v-row class="mx-auto">
+      <v-row class="mx-auto mt-16">
         <v-col cols="12" md="6">
-          <h1 class="mx-16 mt-10 text-amber-accent-4">
+          <h1 class="mx-16 mt-5 mt-md-1 text-amber-accent-4">
             <v-icon size="large">mdi-paw-outline</v-icon> AUmigo: <b>{{ pet.name }}</b>
           </h1>
 
@@ -36,7 +36,7 @@
             <v-img :src="imagens[pet.id % this.imagens.length]" height="400px" fill></v-img>
           </v-col>
 
-          <v-list class="px-16 pt-6 text-h6" width="80%">
+          <v-list class="px-5 px-md-16 text-md-body-1" width="80%">
             <v-list-item class="px-16 py-2"><b>Raça:</b> {{ pet.breed.name }}</v-list-item>
             <v-list-item class="px-16 py-2"><b>Espécie:</b> {{ pet.specie.name }}</v-list-item>
             <v-list-item class="px-16 py-2"><b>Idade:</b> {{ pet.age }} ano(s)</v-list-item>
@@ -45,6 +45,64 @@
               ><b>Porte:</b> {{ this.translateWeight(pet.size) }}</v-list-item
             >
           </v-list>
+        </v-col>
+
+        <v-col cols="12" md="6" class="pr-16">
+          <v-card class="px-10 pb-2 mt-md-n5 pt-5 formCard">
+            <h1 class="mt-5 mt-md-1 mb-8 text-amber-accent-4">
+              <v-icon size="large">mdi-list-box-outline</v-icon> Formulário de Adoção
+            </h1>
+
+            <p class="text-md-body-1 px-5">
+              Se encantou pelo <b>{{ pet.name }}</b> e está pronto para proporcionar a ele um lar
+              amoroso? Preencha o formulário abaixo e entraremos em contato para dar início ao
+              processo de adoção responsável.
+            </p>
+
+            <p class="text-md-body-1 px-5 pt-4">
+              <b>Estamos localizados na Grande São Paulo</b>
+            </p>
+
+            <v-form class="px-5 py-8">
+              <v-text-field
+                v-model="name"
+                label="Nome completo"
+                type="text"
+                variant="outlined"
+              ></v-text-field>
+
+              <v-text-field
+                v-model="email"
+                label="E-mail"
+                type="email"
+                variant="outlined"
+              ></v-text-field>
+
+              <v-text-field
+                v-model="phone"
+                label="Telefone"
+                type="text"
+                variant="outlined"
+              ></v-text-field>
+
+              <v-textarea
+                v-model="about"
+                label="Conte-nos um pouco sobre você, sua casa e a rotina da sua família"
+                type="text"
+                variant="outlined"
+              ></v-textarea>
+
+              <v-btn
+                type="submit"
+                color="amber-accent-4 text-white"
+                class="font-weight-bold mt-5"
+                size="large"
+                variant="flat"
+              >
+                Enviar
+              </v-btn>
+            </v-form>
+          </v-card>
         </v-col>
       </v-row>
     </div>
@@ -58,6 +116,12 @@ export default {
   data() {
     return {
       pet: null,
+      name: '',
+      email: '',
+      phone: '',
+      about: '',
+      erros: [],
+
       imagens: [
         'https://i.pinimg.com/564x/94/af/b4/94afb47cacb76da8586a729a82c39dc2.jpg',
         'https://i.pinimg.com/564x/96/ca/98/96ca9814aecaa525461b638a3e447093.jpg',
@@ -113,5 +177,13 @@ export default {
 
 .font-weight-bold {
   font-weight: bold;
+}
+
+.formCard {
+  border-radius: 1rem;
+
+  box-shadow:
+    12px 16px 28px -2px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)),
+    0px 2px 2px 0px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14));
 }
 </style>
