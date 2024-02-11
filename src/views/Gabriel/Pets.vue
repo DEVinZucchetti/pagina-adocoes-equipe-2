@@ -33,6 +33,7 @@
 
 <script>
 import axios from 'axios'
+import PetService from '../../services/PetService'
 
 export default {
   data() {
@@ -63,7 +64,7 @@ export default {
   computed: {
     petsFiltrados() {
       return this.pets.filter((pet) => {
-        let passFilter = true
+        const passFilter = true
         if (
           this.filtros.nome &&
           pet.pet_name.toLowerCase().indexOf(this.filtros.nome.toLowerCase()) === -1
@@ -80,8 +81,7 @@ export default {
   },
 
   mounted() {
-    axios
-      .get('http://localhost:8000/api/pets/adocao')
+    PetService.getAllPets()
       .then((response) => {
         this.pets = response.data
       })
