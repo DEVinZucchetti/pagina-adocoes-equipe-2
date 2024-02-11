@@ -31,7 +31,7 @@
       <v-form class="d-flex align-center justify-center">
         <v-text-field
           v-model="search"
-          label="Pesquisar"
+          label="Pesquisar por nome, raça, peso ou idade"
           prepend-inner-icon="mdi-magnify"
           class="mx-2"
           outlined
