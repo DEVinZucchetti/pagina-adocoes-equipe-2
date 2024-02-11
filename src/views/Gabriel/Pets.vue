@@ -82,8 +82,8 @@ export default {
 
   mounted() {
     PetService.getAllPets()
-      .then((response) => {
-        this.pets = response.data
+      .then((data) => {
+        this.pets = data
       })
       .catch(() => alert('Houve um erro'))
   }
