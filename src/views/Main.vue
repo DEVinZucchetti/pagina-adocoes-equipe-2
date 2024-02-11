@@ -16,7 +16,7 @@
     <div class="adocao-home">
       <h1>Adote pet 3</h1>
       <button @click="entrar3">Ver Animais</button>
-      <p>Criado por: Henrique 3</p>
+      <p>Criado por: Gabriel Valadão</p>
     </div>
     <hr />
     <div class="adocao-home">
