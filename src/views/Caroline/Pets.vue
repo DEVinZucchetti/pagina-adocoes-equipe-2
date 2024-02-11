@@ -6,13 +6,13 @@
       </v-toolbar-title>
 
       <div class="mr-16">
-        <router-link to="home2">
+        <router-link to="/home2">
           <v-btn class="text-white font-weight-bold" prepend-icon="mdi-home" size="large">
             Home
           </v-btn>
         </router-link>
 
-        <router-link to="pets-adocao-2">
+        <router-link to="/pets-adocao-2">
           <v-btn
             class="text-white font-weight-bold"
             prepend-icon="mdi-cat"
@@ -28,9 +28,9 @@
     <div class="mt-16 pt-16 container">
       <h1 class="my-5 text-amber-accent-4">Encontre seu melhor amigo</h1>
       <v-row>
-        <v-col cols="6" md="3" v-for="(pet, index) in pets" :key="pet.id" class="pa-5">
+        <v-col cols="6" md="3" v-for="pet in pets" :key="pet.id" class="pa-5">
           <v-card @click="redirectToProfile(pet.id)" class="PetsCards" variant="flat">
-            <v-img :src="imagens[index % imagens.length]" height="400px" cover></v-img>
+            <v-img :src="imagens[pet.id % imagens.length]" height="400px" cover></v-img>
             <v-card-title class="text-h5 text-amber-accent-4 font-weight-bold">{{
               pet.pet_name
             }}</v-card-title>

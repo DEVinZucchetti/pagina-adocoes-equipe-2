@@ -6,13 +6,13 @@
       </v-toolbar-title>
 
       <div class="mr-16">
-        <router-link to="home2">
+        <router-link to="/home2">
           <v-btn class="text-white font-weight-bold" prepend-icon="mdi-home" size="large">
             Home
           </v-btn>
         </router-link>
 
-        <router-link to="pets-adocao-2">
+        <router-link to="/pets-adocao-2">
           <v-btn
             class="text-white font-weight-bold"
             prepend-icon="mdi-cat"
@@ -72,6 +72,12 @@
 import { useDisplay } from 'vuetify'
 const { xs, smAndDown, mdAndDown } = useDisplay()
 </script>
+
+<style>
+html {
+  overflow-y: auto;
+}
+</style>
 
 <style scoped>
 .container {
