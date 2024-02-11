@@ -1,24 +1,20 @@
 import { describe, it, expect, vi } from 'vitest'
-import { mount } from '@vue/test-utils'
+import { mount, flushPromises } from '@vue/test-utils'
 import Pets from './Pets.vue'
-import PetService from '@/services/PetService'
+import PetService from '../../services/PetService'
+
 describe('Tela de listagem de Pets', () => {
   vi.spyOn(PetService, 'getAllPets').mockResolvedValue([
     [
       {
-        id: 15,
-        pet_name: 'Atum',
-        age: 11
+        id: 1,
+        pet_name: 'Thor',
+        age: 5
       },
       {
-        id: 14,
-        pet_name: 'Mutano',
-        age: 3
-      },
-      {
-        id: 13,
-        pet_name: 'Dora',
-        age: 7
+        id: 2,
+        pet_name: 'Java',
+        age: 5
       }
     ]
   ])
@@ -29,5 +25,28 @@ describe('Tela de listagem de Pets', () => {
     expect(component).toBeTruthy()
   })
 
-  it('Espera-se que liste um card para cada pet', () => {})
+  it('Espera-se que liste um card para cada pet', async () => {
+    const component = mount(Pets)
+
+    await flushPromises()
+    expect(component.text()).toContain('Thor')
+    expect(component.text()).toContain('Java')
+    expect(component.findAll("[data-test='item-pet'")).toHaveLength(2)
+  })
+
+  it('Espera-se que navegue para a tela de perfil do pet clicado', async () => {
+    const mockRouter = {
+      push: vi.fn()
+    }
+
+    const component = mount(Pets, {
+      global: {
+        mocks: {
+          $router: mockRouter
+        }
+      }
+    })
+
+    await flushPromises()
+  })
 })

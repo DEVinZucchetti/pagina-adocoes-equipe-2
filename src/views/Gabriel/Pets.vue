@@ -20,6 +20,7 @@
         v-for="pet in petsFiltrados"
         :key="pet.id"
         @click="redirectToProfile(pet.id)"
+        data-test="item-pet"
       >
         <img
           src="https://img.freepik.com/fotos-gratis/adoravel-cachorro-basenji-marrom-e-branco-sorrindo-e-dando-mais-uns-cinco-isolado-no-branco_346278-1657.jpg"
