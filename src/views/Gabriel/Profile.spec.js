@@ -57,7 +57,30 @@ describe('Tela de perfil do pet', () => {
     expect(component.text()).toContain('Espécie: Cachorros')
   })
 
-  it('Espera-se que o formulario de adoção seja salvo', () => {
-    
+  it('Espera-se que os dados sejam enviados ao bando de dados', async () => {
+    const adoptePet = vi.spyOn(PetService, 'adoptePet').mockResolvedValue()
+
+    const component = mount(Profile, {
+      global: {
+        mocks: {
+          $route: mockRoute
+        }
+      }
+    })
+
+    await flushPromises()
+
+    component.get("[data-test='input-name']").setValue('Jose Miranda')
+    component.get("[data-test='input-contact']").setValue('999999999')
+    component.get("[data-test='input-email']").setValue('josemiranda@gmail.com')
+    component.get("[data-test='textarea-observations']").setValue('Cachorro lindo')
+    component.get("[data-test='submit-button']").trigger('submit')
+
+    expect(adoptePet).toBeCalledWith({
+      name: 'Jose Miranda',
+      contact: '999999999',
+      email: 'josemiranda@gmail.com',
+      observations: 'Cachorro lindo'
+    })
   })
 })
