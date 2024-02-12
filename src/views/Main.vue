@@ -21,8 +21,8 @@
     <hr />
     <div class="adocao-home">
       <h1>Adote pet 4</h1>
-      <button @click="entrar4">Ver Animais 4</button>
-      <p>Criado por: Henrique4</p>
+      <button @click="entrar4">Ver Animais</button>
+      <p>Criado por: Julio Laindorf</p>
     </div>
     <hr />
   </div>
