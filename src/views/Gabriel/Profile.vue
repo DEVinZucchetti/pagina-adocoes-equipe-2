@@ -20,22 +20,28 @@
       <p>Adote seu amigo:</p>
       <div class="input-group">
         <label for="name">Nome</label>
-        <input v-model="name" />
+        <input v-model="name" data-test="input-name" />
       </div>
       <div class="input-group">
         <label for="contact">Contato</label>
-        <input v-model="contact" />
+        <input v-model="contact" data-test="input-contact" />
       </div>
       <div class="input-group">
         <label for="email">E-mail</label>
-        <input v-model="email" type="email" />
+        <input v-model="email" type="email" data-test="input-email" />
       </div>
 
       <label for="observations">Nos conte o motivo de querer adotar esse pet:</label>
       <div class="input-group">
-        <textarea name="observations" cols="50" rows="10" v-model="observations"></textarea>
+        <textarea
+          name="observations"
+          cols="50"
+          rows="10"
+          v-model="observations"
+          data-test="textarea-observations"
+        ></textarea>
       </div>
-      <button class="button-style" type="submit">Adotar</button>
+      <button class="button-style" type="submit" data-test="submit-button">Adotar</button>
     </form>
   </div>
 </template>
@@ -55,13 +61,12 @@ export default {
   },
   methods: {
     handleSubmit() {
-      axios
-        .post('http://127.0.0.1:8000/api/adocoes', {
-          name: this.name,
-          contact: this.contact,
-          email: this.email,
-          observations: this.observations
-        })
+      PetService.adoptePet({
+        name: this.name,
+        contact: this.contact,
+        email: this.email,
+        observations: this.observations
+      })
         .then(() => {
           alert('Adoção cadastrada com sucesso')
         })
