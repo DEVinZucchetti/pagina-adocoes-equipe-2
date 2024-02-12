@@ -87,8 +87,6 @@ describe('Tela de listagem de pets', () => {
     component.getComponent("[data-test='input-search']").setValue('Rex')
     component.getComponent("[data-test='input-search']").trigger('input')
 
-    await flushPromises()
-
     expect(component.text()).toContain('Rex')
 
     //campo de busca vazio retorna todos os pets

@@ -37,13 +37,21 @@
           </v-col>
 
           <v-list class="px-5 px-md-16 text-md-body-1" width="80%">
-            <v-list-item class="px-16 py-2"><b>Raça:</b> {{ pet.breed.name }}</v-list-item>
-            <v-list-item class="px-16 py-2"><b>Espécie:</b> {{ pet.specie.name }}</v-list-item>
-            <v-list-item class="px-16 py-2"><b>Idade:</b> {{ pet.age }} ano(s)</v-list-item>
-            <v-list-item class="px-16 py-2"><b>Peso:</b> {{ pet.weight }} kg</v-list-item>
-            <v-list-item class="px-16 py-2"
-              ><b>Porte:</b> {{ this.translateWeight(pet.size) }}</v-list-item
-            >
+            <v-list-item class="px-16 py-2" data-test="pet-breed">
+              <b>Raça: </b>{{ pet.breed.name }}
+            </v-list-item>
+            <v-list-item class="px-16 py-2" data-test="pet-specie">
+              <b>Espécie:</b> {{ pet.specie.name }}
+            </v-list-item>
+            <v-list-item class="px-16 py-2" data-test="pet-age">
+              <b>Idade:</b> {{ pet.age }} ano(s)
+            </v-list-item>
+            <v-list-item class="px-16 py-2" data-test="pet-weight">
+              <b>Peso:</b> {{ pet.weight }} kg
+            </v-list-item>
+            <v-list-item class="px-16 py-2" data-test="pet-size">
+              <b>Porte:</b> {{ this.translateWeight(pet.size) }}
+            </v-list-item>
           </v-list>
         </v-col>
 
