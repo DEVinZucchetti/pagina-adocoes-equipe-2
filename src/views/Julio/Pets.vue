@@ -3,7 +3,7 @@
     <h1>Adote um amigo !</h1>
     <div class="pet-list">
 
-      <div class="pet-item" v-for="pet in pets">
+      <div class="pet-item" v-for="pet in pets" @click="redirectToProfile(pet.id)" data-test="item-pet">
         <img src="https://i.imgflip.com/5y7m17.png" />
         <span>{{ pet.pet_name }}</span>
       </div>
@@ -17,10 +17,47 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      pets: []
+      pets: [],
+      filtros: {
+        nome: '',
+        idade: null
+      }
     }
   },
- 
+
+  methods: {
+    redirectToProfile(petId) {
+      this.$router.push(`/pets-adocao-4/${petId}/perfil`)
+    },
+
+    handleSearch() {
+      axios
+        .get('http://localhost:8000/api/pets/adocao')
+        .then((response) => {
+          this.pets = response.data
+        })
+        .catch(() => alert('Houve um erro'))
+    }
+  },
+
+  computed: {
+    petsFiltrados() {
+      return this.pets.filter((pet) => {
+        let passFilter = true
+        if (
+          this.filtros.nome &&
+          pet.pet_name.toLowerCase().indexOf(this.filtros.nome.toLowerCase()) === -1
+        ) {
+          passFilter = false
+        }
+        if (this.filtros.idade !== null && pet.idade !== this.filtros.idade) {
+          passFilter = false
+        }
+
+        return passFilter
+      })
+    }
+  },
   mounted() {
     axios
       .get('http://localhost:8000/api/pets/adocao')
