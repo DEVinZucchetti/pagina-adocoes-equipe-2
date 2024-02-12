@@ -56,4 +56,8 @@ describe('Tela de perfil do pet', () => {
     expect(component.text()).toContain('Porte: LARGE')
     expect(component.text()).toContain('Espécie: Cachorros')
   })
+
+  it('Espera-se que o formulario de adoção seja salvo', () => {
+    
+  })
 })
