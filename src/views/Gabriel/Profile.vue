@@ -1,6 +1,7 @@
 <template>
   <div class="pet-info" v-if="pet">
     <ul>
+      <h3>Amigo: {{ pet.name }}</h3>
       <div class="pet-image">
         <img
           src="https://img.freepik.com/fotos-gratis/adoravel-cachorro-basenji-marrom-e-branco-sorrindo-e-dando-mais-uns-cinco-isolado-no-branco_346278-1657.jpg"
