@@ -2,6 +2,7 @@
   <div v-if="pet">
     <div class="pet-informations">
       <h1>Amigo: {{ pet.name }}</h1>
+      <img src="https://i.imgflip.com/5y7m17.png" />
       <ul>
         <li>Raça: {{ pet.race.name }}</li>
         <li>Espécie: {{ pet.specie.name }}</li>
@@ -134,5 +135,8 @@ export default {
   width: 50%;
   margin: 0 auto;
   cursor: pointer;
+}
+img{
+  width:200px
 }
 </style>
