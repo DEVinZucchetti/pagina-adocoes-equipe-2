@@ -12,9 +12,11 @@
         e carinho que faz bem pra todo mundo. Leve um para casa: cuide dele e deixe que ele cuide de
         você também.
       </p>
-      <button>ADOTAR AGORA</button>
+      <router-link to="pets-adocao-4">
+        <button class="button-action">ADOTAR AGORA</button>
+      </router-link>
     </div>
-   
+
     <div class="right-content">
       <img
         src="https://vale.com/documents/d/guest/imagem-dogs01?doAsUserId=RPhnXhXIUPuTnXbIjnHTCg%3D%3D%2F-%2Fcategories%2F64940%2F-%2Fcategories%2F%2F-%2Fcategories%2F64940%2F-%2Fcategories%2F%2F-%2Fcategories%2F%2F-%2Fcategories%2F64940%2F-%2Fcategories%2F%2F-%2Fcategories%2F%2F-%2Fcategories%2F%2F-%2Fcategories%2F64940%2F-%2Fcategories%2F64940%2F-%2Fcategories%2F%2F-%2Fcategories%2F%2F-%2Fcategories%2F"
@@ -45,14 +47,21 @@
   width: 500px;
 }
 
-
 @media (max-width: 1000px) {
   .main-content {
     flex-direction: column-reverse;
   }
-
   .text-description {
     font-size: 20px;
   }
 }
+.button-action{
+    width: 300px;
+    height: 64px;
+    background: rgb(225, 73, 18);
+    border-radius: 4px;
+    color: #fff;
+    font-size: 20px;
+  }
+
 </style>

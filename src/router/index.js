@@ -9,6 +9,7 @@ import PetsAdocao2 from '../views/Caroline/Pets.vue'
 import PetsProfile2 from '../views/Caroline/Profile.vue'
 import Pets from '../views/Gabriel/Pets.vue'
 import PetsProfile from '../views/Gabriel/Profile.vue'
+import PetsAdocao4 from '../views/Julio/Pets.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -57,8 +58,14 @@ const router = createRouter({
       path: '/pets-adocao/:id/perfil',
       name: 'Profile',
       component: PetsProfile
-    }
+    },
+    {
+      path: '/pets-adocao-4',
+      name: 'petsAdocao4',
+      component: PetsAdocao4
+    },
   ]
+  
 })
 
 export default router
