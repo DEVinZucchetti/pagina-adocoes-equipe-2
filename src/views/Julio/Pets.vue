@@ -3,7 +3,7 @@
     <h1>Adote um amigo !</h1>
     <div class="pet-list">
 
-      <div class="pet-item" v-for="pet in pets" @click="redirectToProfile(pet.id)" data-test="item-pet">
+      <div class="pet-item" v-for="pet in pets">
         <img src="https://i.imgflip.com/5y7m17.png" />
         <span>{{ pet.pet_name }}</span>
       </div>
