@@ -37,12 +37,18 @@
           outlined
           dense
           @input="searchPets"
+          data-test="input-search"
         ></v-text-field>
       </v-form>
 
       <v-row>
         <v-col cols="6" md="3" v-for="pet in FilteredPets" :key="pet.id" class="pa-5">
-          <v-card @click="redirectToProfile(pet.id)" class="PetsCards" variant="flat">
+          <v-card
+            data-test="item-pet"
+            @click="redirectToProfile(pet.id)"
+            class="PetsCards"
+            variant="flat"
+          >
             <v-img :src="imagens[pet.id % imagens.length]" height="400px" cover></v-img>
             <v-card-title class="text-h5 text-amber-accent-4 font-weight-bold">{{
               pet.pet_name
@@ -58,6 +64,8 @@
 
 <script>
 import axios from 'axios'
+import PetService from '../../services/PetService'
+
 export default {
   data() {
     return {
@@ -94,10 +102,9 @@ export default {
     }
   },
   mounted() {
-    axios
-      .get('http://localhost:8000/api/pets/adocao')
-      .then((response) => {
-        this.pets = this.FilteredPets = response.data
+    PetService.getAllPets()
+      .then((data) => {
+        this.pets = this.FilteredPets = data
       })
       .catch(() => alert('Houve um erro. Entre em contato com a ONG'))
   }
