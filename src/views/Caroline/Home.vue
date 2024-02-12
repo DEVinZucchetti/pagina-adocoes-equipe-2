@@ -31,7 +31,11 @@
           <v-icon class="text-amber-accent-4" style="font-size: 50px">mdi-paw-outline</v-icon>
           <h1 class="my-5 text-amber-accent-4">Me leva para casa</h1>
 
-          <div class="block-text" :style="smAndDown ? 'width:100%' : 'width:80%'">
+          <div
+            class="block-text"
+            :style="smAndDown ? 'width:100%' : 'width:80%'"
+            data-test="block-text"
+          >
             <p class="my-4 text-h6 text-dark-grey">
               Nós cuidamos deles. <b>Agora deixe que eles cuidem de você.</b>
             </p>
