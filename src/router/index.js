@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Main from '../views/Main.vue'
-import Home1 from '../views/pessoa1/Home.vue'
+import Home1 from '../views/Andre/Home.vue'
 import Home2 from '../views/Caroline/Home.vue'
 import Home3 from '../views/Gabriel/Home.vue'
 import Home4 from '../views/Julio/Home.vue'
