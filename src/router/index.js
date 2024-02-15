@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Main from '../views/Main.vue'
-import Home1 from '../views/pessoa1/Home.vue'
+import Home1 from '../views/Andre/Home.vue'
 import Home2 from '../views/Caroline/Home.vue'
 import Home3 from '../views/Gabriel/Home.vue'
 import Home4 from '../views/Julio/Home.vue'
@@ -11,6 +11,8 @@ import Pets from '../views/Gabriel/Pets.vue'
 import PetsProfile from '../views/Gabriel/Profile.vue'
 import PetsAdocao4 from '../views/Julio/Pets.vue'
 import PetsProfile4 from '../views/Julio/Profile.vue'
+import PetsAdocao1 from '../views/Andre/Pets.vue'
+import PetsProfile1 from '../views/Andre/Profile.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -69,6 +71,16 @@ const router = createRouter({
       path: '/pets-adocao-4/:id/perfil',
       name: 'petsProfile4',
       component: PetsProfile4
+    },
+    {
+      path: '/pets-adocao-1',
+      name: 'petsAdocao1',
+      component: PetsAdocao1
+    },
+    {
+      path: '/pets-adocao-1/:id/perfil',
+      name: 'petsProfile1',
+      component: PetsProfile1
     }
   ]
   
