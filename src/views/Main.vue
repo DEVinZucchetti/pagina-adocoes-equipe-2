@@ -3,7 +3,7 @@
     <div class="adocao-home">
       <h1>Adote pet 1</h1>
       <button @click="entrar1">Ver Animais</button>
-      <p>Criado por: Henrique</p>
+      <p>Criado por: Andre Vieira</p>
     </div>
     <hr />
 
