@@ -5,6 +5,7 @@ import Home1 from '../views/Andre/Home.vue'
 import Home2 from '../views/Caroline/Home.vue'
 import Home3 from '../views/Gabriel/Home.vue'
 import Home4 from '../views/Julio/Home.vue'
+import PetsAdocao1 from '../views/Andre/Pets.vue'
 import PetsAdocao2 from '../views/Caroline/Pets.vue'
 import PetsProfile2 from '../views/Caroline/Profile.vue'
 import Pets from '../views/Gabriel/Pets.vue'
@@ -39,6 +40,11 @@ const router = createRouter({
       path: '/home4',
       name: 'home4',
       component: Home4
+    },
+        {
+      path: '/pets-adocao-1',
+      name: 'petsAdocao1',
+      component: PetsAdocao1
     },
     {
       path: '/pets-adocao-2',

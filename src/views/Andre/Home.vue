@@ -19,7 +19,7 @@
               você também.
             </p>
           </div>
-          <router-link to="pets-adocao">
+          <router-link to="pets-adocao-1">
         <button class="adopt-button">Adotar agora!</button>
       </router-link>
         </div>
