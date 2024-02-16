@@ -28,7 +28,7 @@
     <div v-if="pet" class="my-auto" width="80%">
       <v-row class="mx-auto mt-16">
         <v-col cols="12" md="6">
-          <h1 class="mx-16 mt-5 mt-md-1 text-amber-accent-4">
+          <h1 class="mx-16 mt-5 mt-md-1 text-amber-accent-4" data-test="pet-name">
             <v-icon size="large">mdi-paw-outline</v-icon> AUmigo: <b>{{ pet.name }}</b>
           </h1>
 
@@ -37,13 +37,21 @@
           </v-col>
 
           <v-list class="px-5 px-md-16 text-md-body-1" width="80%">
-            <v-list-item class="px-16 py-2"><b>Raça:</b> {{ pet.breed.name }}</v-list-item>
-            <v-list-item class="px-16 py-2"><b>Espécie:</b> {{ pet.specie.name }}</v-list-item>
-            <v-list-item class="px-16 py-2"><b>Idade:</b> {{ pet.age }} ano(s)</v-list-item>
-            <v-list-item class="px-16 py-2"><b>Peso:</b> {{ pet.weight }} kg</v-list-item>
-            <v-list-item class="px-16 py-2"
-              ><b>Porte:</b> {{ this.translateWeight(pet.size) }}</v-list-item
-            >
+            <v-list-item class="px-16 py-2" data-test="pet-breed">
+              <b>Raça: </b>{{ pet.breed.name }}
+            </v-list-item>
+            <v-list-item class="px-16 py-2" data-test="pet-specie">
+              <b>Espécie:</b> {{ pet.specie.name }}
+            </v-list-item>
+            <v-list-item class="px-16 py-2" data-test="pet-age">
+              <b>Idade:</b> {{ pet.age }} ano(s)
+            </v-list-item>
+            <v-list-item class="px-16 py-2" data-test="pet-weight">
+              <b>Peso:</b> {{ pet.weight }} kg
+            </v-list-item>
+            <v-list-item class="px-16 py-2" data-test="pet-size">
+              <b>Porte:</b> {{ this.translateWeight(pet.size) }}
+            </v-list-item>
           </v-list>
         </v-col>
 
@@ -71,6 +79,7 @@
                 :error-messages="errors.name"
                 variant="outlined"
                 class="pb-2"
+                data-test="input-name"
               ></v-text-field>
 
               <v-text-field
@@ -80,24 +89,27 @@
                 :error-messages="errors.email"
                 variant="outlined"
                 class="pb-2"
+                data-test="input-email"
               ></v-text-field>
 
               <v-text-field
-                v-model="phone"
+                v-model="contact"
                 label="Telefone"
                 type="text"
-                :error-messages="errors.phone"
+                :error-messages="errors.contact"
                 variant="outlined"
                 class="pb-2"
+                data-test="input-contact"
               ></v-text-field>
 
               <v-textarea
-                v-model="about"
+                v-model="observations"
                 label="Conte-nos um pouco sobre você, sua casa e a rotina da sua família"
                 type="text"
-                :error-messages="errors.about"
+                :error-messages="errors.observations"
                 variant="outlined"
                 class="pb-2"
+                data-test="input-observations"
               ></v-textarea>
 
               <v-btn
@@ -106,6 +118,7 @@
                 class="font-weight-bold"
                 size="large"
                 variant="flat"
+                data-test="submit-button"
               >
                 Enviar
               </v-btn>
@@ -122,18 +135,17 @@
 </template>
 
 <script>
-import axios from 'axios'
 import * as yup from 'yup'
 import { captureErrorYup } from '../../utils/captureErrorYup'
-
+import PetService from '../../services/PetService'
 export default {
   data() {
     return {
       pet: null,
       name: '',
       email: '',
-      phone: '',
-      about: '',
+      contact: '',
+      observations: '',
       errors: {},
       message: false,
 
@@ -179,8 +191,8 @@ export default {
           .string()
           .email('Forneça um endereço de email válido')
           .required('E-mail é obrigatório.'),
-        phone: yup.string().required('Um telefone para contato é obrigatório.'),
-        about: yup
+        contact: yup.string().required('Um telefone para contato é obrigatório.'),
+        observations: yup
           .string()
           .min(20, 'Conte-nos um pouco mais sobre você e sua família')
           .required('É obrigatório nos contar um pouco sobre você e sua família')
@@ -190,20 +202,30 @@ export default {
           {
             name: this.name,
             email: this.email,
-            phone: this.phone,
-            about: this.about
+            contact: this.contact,
+            observations: this.observations
           },
           { abortEarly: false }
         )
-
         this.errors = {}
 
-        //implementar post em nova tabela do banco de dados no backend
-        this.name = ''
-        this.email = ''
-        this.phone = ''
-        this.about = ''
-        this.message = true
+        PetService.adoptPet({
+          name: this.name,
+          email: this.email,
+          contact: this.contact,
+          observations: this.observations
+        })
+          .then(() => {
+            alert('Cadastrado com sucesso')
+            this.name = ''
+            this.email = ''
+            this.contact = ''
+            this.observations = ''
+            this.message = true
+          })
+          .catch(() => {
+            alert('Erro ao tentar realizar a adocao')
+          })
       } catch (error) {
         if (error instanceof yup.ValidationError) {
           console.log(error)
@@ -214,8 +236,8 @@ export default {
   },
   mounted() {
     const id = this.$route.params.id
-    axios.get(`http://127.0.0.1:8000/api/pets/${id}`).then((response) => {
-      this.pet = response.data
+    PetService.getOnePet(id).then((data) => {
+      this.pet = data
     })
   }
 }
