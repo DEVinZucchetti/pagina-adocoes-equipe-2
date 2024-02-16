@@ -7,11 +7,12 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test:unit": "vitest",
+    "test:unit": "vitest --coverage",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@vitest/coverage-v8": "^1.2.2",
     "axios": "^1.6.7",
     "vue": "^3.3.11",
     "vue-router": "^4.2.5",
