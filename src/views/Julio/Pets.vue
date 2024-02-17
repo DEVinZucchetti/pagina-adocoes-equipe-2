@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import PetService from './services/PetService'
 export default {
   data() {
@@ -39,7 +40,8 @@ export default {
 
     handleSearch() {
      
-        PetService.getAllPets()
+      axios
+        .get('http://localhost:8000/api/pets/adocao')
         .then((response) => {
           this.pets = response.data
         })
@@ -72,10 +74,9 @@ export default {
     }
   },
   mounted() {
-    axios
-      .get('http://localhost:8000/api/pets/adocao')
-      .then((response) => {
-        this.pets = this.FilteredPets = response.data
+    PetService.getAllPets()
+      .then((data) => {
+        this.pets = data
       })
       .catch(() => alert('Houve um erro. Entre em contato com a ONG'))
   }
