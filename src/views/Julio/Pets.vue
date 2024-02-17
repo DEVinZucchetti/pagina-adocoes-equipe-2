@@ -75,6 +75,7 @@ export default {
   },
   mounted() {
     PetService.getAllPets()
+
       .then((data) => {
         this.pets = data
       })
