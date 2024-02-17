@@ -6,7 +6,7 @@
       <ul>
         <li>Raça: {{ pet.race.name }}</li>
         <li>Espécie: {{ pet.specie.name }}</li>
-        <li>IDADE: {{ pet.age }} ANO(S)</li>
+        <li>Idade: {{ pet.age }} ANO(S)</li>
         <li>Peso: {{ pet.weight }} KG</li>
         <li>Porte: {{ pet.size }}</li>
       </ul>
@@ -16,7 +16,7 @@
       <h2>Faltam poucos passos para adotar {{ pet.name }}</h2>
       <div class="input-form">
         <label>Nome</label>
-        <input v-model="name" data-test="input-name" />
+        <input v-model="name" data-test="input-name"/>
       </div>
       <div class="input-form">
         <label>Contato</label>
@@ -28,7 +28,7 @@
       </div>
       <div class="input-form">
         <label>Fale um pouco sobre a sua motivação de adotar esse pet:</label>
-        <textarea v-model="observations" data-test="textarea-observations" />
+        <textarea v-model="observations" data-test="textarea-observations"/>
       </div>
       <div class="button-adoption">
       <button type="submit" data-test="submit-button">Cadastrar</button>
@@ -39,7 +39,7 @@
 
 
 <script>
-import axios from 'axios'
+import PetService from '../../services/PetService'
 export default {
   data() {
     return {
@@ -52,8 +52,7 @@ export default {
   },
   methods: {
     handleSubmit() {
-      axios
-        .post('http://127.0.0.1:8000/api/adocoes', {
+     PetService.adoptPet({
           name: this.name,
           contact: this.contact,
           email: this.email,
@@ -69,9 +68,9 @@ export default {
   },
   mounted() {
     const id = this.$route.params.id
-    axios.get(`http://127.0.0.1:8000/api/pets/${id}`)
-      .then((response) => {
-        this.pet = response.data
+    PetService.getOnePet(id)
+      .then((data) => {
+        this.pet = data
       })
   }
 }
@@ -83,11 +82,6 @@ export default {
   flex-direction: column;
 }
 
-.form input, {
-  width: 30%;
-  height: 32px;
-  
-}
 .form h2 {
   text-align: center;
   font-size: 24px;
@@ -139,4 +133,4 @@ export default {
 img{
   width:200px
 }
-</style>
+</style>../../services/PetService

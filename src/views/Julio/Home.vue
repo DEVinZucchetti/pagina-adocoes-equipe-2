@@ -13,7 +13,7 @@
         você também.
       </p>
       <router-link to="pets-adocao-4">
-        <button class="button-action">ADOTAR AGORA</button>
+        <button class="button-action" data-test="adoption-button">ADOTAR AGORA</button>
       </router-link>
     </div>
 
