@@ -2,7 +2,7 @@ import { describe, expect, it,vi } from 'vitest'
 import { flushPromises, mount } from "@vue/test-utils";
 
 import Profile from '../Julio/Profile.vue'
-import PetService from './services/PetService';
+import PetService from '../../services/PetService'
 
 describe("Tela de perfil do pet", () => {
 
@@ -60,5 +60,32 @@ describe("Tela de perfil do pet", () => {
         expect(component.text()).toContain("Porte: SMALL") 
 })
 
+it("Espera-se que ao submeter o formulário, seja enviado os dados corretamente", async () => {
+
+    const adoptPet = vi.spyOn(PetService, 'adoptPet').mockResolvedValue({})
+
+    const component = mount(Profile, {
+        global: {
+            mocks: {
+                $route: mockRoute
+            }
+        }
+    })
+
+    await flushPromises()
+
+    component.get("[data-test='input-name']").setValue("Julio")
+    component.get("[data-test='input-contact']").setValue("3663-3663")
+    component.get("[data-test='input-email']").setValue("julio@gmail.com")
+    component.get("[data-test='textarea-observations']").setValue("gosto de gato")
+    component.get("[data-test='submit-button']").trigger("submit")
+
+    expect(adoptPet).toBeCalledWith({
+        name: 'Julio',
+        email: 'julio@gmail.com',
+        contact: '3663-3663',
+        observations: 'gosto de gato'
+    })
+})
 
 })

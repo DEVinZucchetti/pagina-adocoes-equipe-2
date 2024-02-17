@@ -21,7 +21,7 @@
 
 <script>
 import axios from 'axios';
-import PetService from './services/PetService'
+import PetService from '../../services/PetService'
 export default {
   data() {
     return {
@@ -137,3 +137,4 @@ export default {
   flex-direction: column
   }
 </style>
+../../services/PetService

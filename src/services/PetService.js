@@ -11,7 +11,10 @@ class PetService {
     return response.data
   }
 
-
+  async adoptPet(data) {
+    const response = await axios.post('http://localhost:8000/api/pets/adocao')
+    return response.data
+  }
 }
 
 export default new PetService()

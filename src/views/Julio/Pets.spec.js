@@ -2,7 +2,7 @@ import { describe, expect, it,vi } from 'vitest'
 import { flushPromises, mount } from "@vue/test-utils";
 
 import Pets from '../Julio/Pets.vue'
-import PetService from './services/PetService';
+import PetService from '../../services/PetService';
 
 describe("Testa a tela de Listagem de Pets", () => {
 

@@ -16,7 +16,7 @@
       <h2>Faltam poucos passos para adotar {{ pet.name }}</h2>
       <div class="input-form">
         <label>Nome</label>
-        <input v-model="name" data-test="input-name" />
+        <input v-model="name" data-test="input-name"/>
       </div>
       <div class="input-form">
         <label>Contato</label>
@@ -28,7 +28,7 @@
       </div>
       <div class="input-form">
         <label>Fale um pouco sobre a sua motivação de adotar esse pet:</label>
-        <textarea v-model="observations" data-test="textarea-observations" />
+        <textarea v-model="observations" data-test="textarea-observations"/>
       </div>
       <div class="button-adoption">
       <button type="submit" data-test="submit-button">Cadastrar</button>
@@ -39,8 +39,7 @@
 
 
 <script>
-import axios from 'axios'
-import PetService from './services/PetService'
+import PetService from '../../services/PetService'
 export default {
   data() {
     return {
@@ -53,8 +52,7 @@ export default {
   },
   methods: {
     handleSubmit() {
-      axios
-        .post('http://127.0.0.1:8000/api/adocoes', {
+     PetService.adoptPet({
           name: this.name,
           contact: this.contact,
           email: this.email,
@@ -135,4 +133,4 @@ export default {
 img{
   width:200px
 }
-</style>
+</style>../../services/PetService
