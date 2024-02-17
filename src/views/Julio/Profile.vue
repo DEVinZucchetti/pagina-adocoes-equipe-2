@@ -6,7 +6,7 @@
       <ul>
         <li>Raça: {{ pet.race.name }}</li>
         <li>Espécie: {{ pet.specie.name }}</li>
-        <li>IDADE: {{ pet.age }} ANO(S)</li>
+        <li>Idade: {{ pet.age }} ANO(S)</li>
         <li>Peso: {{ pet.weight }} KG</li>
         <li>Porte: {{ pet.size }}</li>
       </ul>
@@ -40,6 +40,7 @@
 
 <script>
 import axios from 'axios'
+import PetService from './services/PetService'
 export default {
   data() {
     return {
@@ -69,9 +70,9 @@ export default {
   },
   mounted() {
     const id = this.$route.params.id
-    axios.get(`http://127.0.0.1:8000/api/pets/${id}`)
-      .then((response) => {
-        this.pet = response.data
+    PetService.getOnePet(id)
+      .then((data) => {
+        this.pet = data
       })
   }
 }
@@ -83,11 +84,6 @@ export default {
   flex-direction: column;
 }
 
-.form input, {
-  width: 30%;
-  height: 32px;
-  
-}
 .form h2 {
   text-align: center;
   font-size: 24px;
