@@ -27,6 +27,10 @@
         <input v-model="email" type="email" data-test="input-email" />
       </div>
       <div class="input-form">
+        <label>CPF</label>
+        <input v-model="cpf" />
+      </div>
+      <div class="input-form">
         <label>Fale um pouco sobre a sua motivação de adotar esse pet:</label>
         <textarea v-model="observations" data-test="textarea-observations"/>
       </div>
@@ -47,23 +51,33 @@ export default {
       name: '',
       contact: '',
       email: '',
-      observations: ''
+      observations: '',
+      cpf:''
+     
     }
   },
   methods: {
     handleSubmit() {
-     PetService.adoptPet({
+    
+      PetService.adoptPet({
           name: this.name,
-          contact: this.contact,
           email: this.email,
-          observations: this.observations
+          contact: this.contact,
+          observations: this.observations,
+          pet_id: this.$route.params.id,
+          cpf:this.cpf
         })
-        .then(() => {
-          alert('Adoção cadastrada com sucesso')
-        })
-        .catch(() => {
-          alert('Houve um erro ao tentar realizar a adoção')
-        })
+          .then(() => {
+            alert('Cadastrado com sucesso')
+            this.name = ''
+            this.email = ''
+            this.contact = ''
+            this.observations = ''
+            this.cpf=''
+          })
+          .catch(() => {
+            alert('Erro ao tentar realizar a adocao')
+          })
     }
   },
   mounted() {

@@ -7,13 +7,13 @@ class PetService {
   }
 
   async getOnePet(id) {
-    const response = await axios.get(`http://127.0.0.1:8000/api/pets/${id}`)
+    const response = await axios.get(`http://127.0.0.1:8000/api/pets/${id}/adocao`)
     return response.data
   }
 
   async adoptPet(data) {
-    const response = await axios.post('http://localhost:8000/api/pets/adocao')
-    return response.data
+    const response = await axios.post('http://localhost:8000/api/pets/adocao', data);
+    return response.data;
   }
 }
 
